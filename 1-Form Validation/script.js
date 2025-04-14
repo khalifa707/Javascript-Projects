@@ -27,6 +27,8 @@ function checkEmail(email){
 
 
 //Event Listeners
+//Methode 1
+/*
 form.addEventListener('submit', e => {
     e.preventDefault();
 
@@ -54,4 +56,23 @@ form.addEventListener('submit', e => {
         showSuccess(password2);
     }
 
-});
+});*/
+
+//Methode 2
+//check required fields
+
+function checkRequired(inputArr){
+    inputArr.forEach(function(input){
+        if(input.value.trim() === ''){
+            showError(input, `${getFieldName(input)} is required`);
+        }else{
+            showSuccess(input);
+        }
+    });
+}
+
+form.addEventListener('submit',e => {
+    e.preventDefault();
+
+    checkRequired([username, email, password, password2]);
+})
